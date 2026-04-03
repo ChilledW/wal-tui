@@ -53,6 +53,13 @@ impl AppLogic {
             .collect()
     }
 
+    pub fn selected_item(&self) -> PathBuf {
+        self.items
+            .get(self.state.selected().unwrap_or(0))
+            .cloned()
+            .unwrap_or_default()
+    }
+
     pub fn get_displayable_items(&self) -> &[String] {
         &self.displayable_items
     }

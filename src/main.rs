@@ -3,7 +3,10 @@ use std::path::PathBuf;
 use color_eyre::Result;
 use crossterm::event::{self, Event};
 use ratatui::{DefaultTerminal, Frame};
+use ratatui_image::{StatefulImage, picker::Picker, protocol::StatefulProtocol};
+
 use std::fs::OpenOptions;
+use std::io::Write;
 
 mod app_logic;
 use app_logic::AppLogic;
@@ -50,6 +53,8 @@ fn main() -> Result<()> {
     app.select(0);
     color_eyre::install()?;
     let terminal = ratatui::init();
+    writeln!(file, "Got to the main loop")?;
+
     let result = run(terminal, &mut app);
     ratatui::restore();
     result
